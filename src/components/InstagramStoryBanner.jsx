@@ -42,8 +42,8 @@ export default function InstagramStoryBanner({ onOpenSubscription }) {
           </div>
         </div>
 
-        {/* Strictly 2 in 1 Row (grid-cols-2) across Mobile, Tablet, and Desktop */}
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:gap-5">
+        {/* Mobile: 2 in 1 Row (grid-cols-2) • Desktop: Strictly 4 in 1 Row (lg:grid-cols-4) */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {INSTAGRAM_COMMENTS.map((item, idx) => {
             const delays = ['delay-75', 'delay-150', 'delay-200', 'delay-300'];
             return (
