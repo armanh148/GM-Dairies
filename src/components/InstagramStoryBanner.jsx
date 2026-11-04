@@ -42,62 +42,62 @@ export default function InstagramStoryBanner({ onOpenSubscription }) {
           </div>
         </div>
 
-        {/* Instagram Comment Cards Grid: Exactly 2 in a row (grid-cols-1 md:grid-cols-2) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Instagram Comment Cards Grid: Exactly 4 in one row (lg:grid-cols-4) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {INSTAGRAM_COMMENTS.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#FAF7F2] rounded-2xl p-5 sm:p-6 border border-[#E9E3D5] hover:border-[#2D6A4F]/40 transition-all hover:shadow-md flex flex-col justify-between h-full"
+              className="bg-[#FAF7F2] rounded-2xl p-4 sm:p-5 border border-[#E9E3D5] hover:border-[#2D6A4F]/40 transition-all hover:shadow-md flex flex-col justify-between h-full"
             >
               {/* Customer Comment */}
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
+                  <div className="flex items-center gap-2">
                     <img
                       src={item.avatar}
                       alt={item.handle}
-                      className="w-9 h-9 rounded-full object-cover border border-[#2D6A4F]/30 shrink-0"
+                      className="w-8 h-8 rounded-full object-cover border border-[#2D6A4F]/30 shrink-0"
                     />
-                    <div>
-                      <div className="text-xs sm:text-sm font-bold text-[#1B4332]">{item.handle}</div>
-                      <div className="text-[10px] sm:text-[11px] text-gray-500">{item.time}</div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-[#1B4332] truncate">{item.handle}</div>
+                      <div className="text-[10px] text-gray-500 truncate">{item.time}</div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-gray-500 shrink-0">
-                    <Heart className="w-4 h-4 fill-red-500 text-red-500" />
-                    <span className="font-semibold">{item.likes}</span>
+                  <div className="flex items-center gap-1 text-xs text-gray-500 shrink-0">
+                    <Heart className="w-3.5 h-3.5 fill-red-500 text-red-500" />
+                    <span className="font-semibold text-[11px]">{item.likes}</span>
                   </div>
                 </div>
 
-                <div className="text-xs sm:text-sm font-medium text-[#2C3E35] bg-white p-3 rounded-xl border border-[#ECE5D8] leading-relaxed">
+                <div className="text-[11px] sm:text-xs font-medium text-[#2C3E35] bg-white p-2.5 sm:p-3 rounded-xl border border-[#ECE5D8] leading-relaxed">
                   "{item.comment}"
                 </div>
 
                 {/* GM Dairies Official Verified Reply */}
-                <div className="pl-3 border-l-2 border-[#2D6A4F] space-y-1">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#1B4332]">
+                <div className="pl-2.5 border-l-2 border-[#2D6A4F] space-y-1">
+                  <div className="flex items-center gap-1 text-[11px] font-bold text-[#1B4332]">
                     <span>GM Dairies</span>
-                    <CheckCircle className="w-3.5 h-3.5 text-[#2D6A4F] fill-[#D8F3DC]" />
-                    <span className="text-[10px] bg-[#D8F3DC] text-[#1B4332] px-1.5 py-0.2 rounded font-semibold">Official Reply</span>
+                    <CheckCircle className="w-3 h-3 text-[#2D6A4F] fill-[#D8F3DC]" />
+                    <span className="text-[9px] bg-[#D8F3DC] text-[#1B4332] px-1 py-0.2 rounded font-semibold">Official Reply</span>
                   </div>
-                  <p className="text-xs text-[#354F42] leading-relaxed">
+                  <p className="text-[11px] sm:text-xs text-[#354F42] leading-relaxed">
                     {item.reply}
                   </p>
                 </div>
               </div>
 
               {/* Quick Action footer */}
-              <div className="pt-4 mt-3 border-t border-[#ECE5D8]/80 flex items-center justify-between text-xs">
-                <span className="text-[#52796F] font-semibold text-xs">
+              <div className="pt-3 mt-3 border-t border-[#ECE5D8]/80 flex items-center justify-between text-[11px]">
+                <span className="text-[#52796F] font-semibold text-[10px]">
                   ✓ Delivery available
                 </span>
                 <a
                   href={`https://wa.me/923103510076?text=Assalam-o-Alaikum%20GM%20Dairies,%20I%20saw%20the%20comment%20on%20Instagram%20and%20want%20to%20order`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-bold text-[#2D6A4F] hover:underline flex items-center gap-1 text-xs"
+                  className="font-bold text-[#2D6A4F] hover:underline flex items-center gap-1 text-[11px]"
                 >
-                  <MessageCircle className="w-3.5 h-3.5" /> Quick WhatsApp
+                  <MessageCircle className="w-3 h-3" /> Quick WhatsApp
                 </a>
               </div>
             </div>
