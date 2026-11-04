@@ -7,7 +7,7 @@ export default function TestimonialsSection() {
   const [isPaused, setIsPaused] = useState(false);
   const autoPlayRef = useRef(null);
 
-  // Auto-play infinite loop: advances every 3.5s, pauses on hover
+  // Auto-loop highlight rotation every 3.5 seconds
   useEffect(() => {
     if (!isPaused) {
       autoPlayRef.current = setInterval(() => {
@@ -83,9 +83,9 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* STRICTLY ONE ROW LOOP SLIDER */}
+        {/* 4 REVIEWS IN ONE SINGLE ROW CONTAINER */}
         <div
-          className="relative max-w-4xl mx-auto"
+          className="relative w-full"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -93,9 +93,9 @@ export default function TestimonialsSection() {
           <div className="flex items-center justify-between mb-4 px-1">
             <div className="flex items-center gap-2 text-xs font-bold text-[#1B4332]">
               <span className="flex h-2.5 w-2.5 rounded-full bg-[#25D366] animate-pulse" />
-              <span>Review {currentIndex + 1} of {TESTIMONIALS.length}</span>
+              <span>Live Reviews Loop (Review {currentIndex + 1} of {TESTIMONIALS.length})</span>
               <span className="text-[11px] text-gray-400 font-normal">
-                {isPaused ? '(Paused on hover)' : '(Auto loop active)'}
+                {isPaused ? '(Paused on hover)' : '(Auto-looping active)'}
               </span>
             </div>
 
@@ -118,61 +118,65 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Single Row Horizontal Slide Track (Never stacks vertically) */}
-          <div className="overflow-hidden w-full rounded-3xl border border-[#E8E2D5] shadow-md bg-[#FAF7F2]">
-            <div
-              className="flex flex-nowrap transition-transform duration-500 ease-in-out"
-              style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
-              }}
-            >
-              {TESTIMONIALS.map((review, idx) => (
+          {/* ALL 4 REVIEWS IN 1 ROW (lg:grid-cols-4) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
+            {TESTIMONIALS.map((review, idx) => {
+              const isActive = idx === currentIndex;
+              return (
                 <div
                   key={idx}
-                  className="w-full shrink-0 p-6 sm:p-10 flex flex-col justify-between min-h-[220px]"
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`cursor-pointer rounded-3xl p-5 sm:p-6 border transition-all duration-300 flex flex-col justify-between h-full ${
+                    isActive
+                      ? 'bg-[#FAF7F2] border-[#2D6A4F] shadow-xl ring-2 ring-[#2D6A4F]/25 scale-[1.02]'
+                      : 'bg-white border-[#EAE3D6] opacity-90 hover:opacity-100 hover:border-gray-400 hover:shadow-md'
+                  }`}
                 >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-1">
                       <div className="flex text-[#F4A261]">
                         {[...Array(review.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+                          <Star key={i} className="w-4 h-4 fill-current" />
                         ))}
                       </div>
-                      <span className="text-[10px] sm:text-xs font-bold bg-[#E8F5E9] text-[#2D6A4F] px-3 py-1 rounded-full border border-[#2D6A4F]/20">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border truncate ${
+                        isActive
+                          ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]'
+                          : 'bg-[#E8F5E9] text-[#2D6A4F] border-[#2D6A4F]/20'
+                      }`}>
                         {review.date}
                       </span>
                     </div>
 
                     <div className="relative pt-1">
-                      <Quote className="w-8 h-8 text-[#2D6A4F]/20 absolute -top-3 -left-2 pointer-events-none" />
-                      <p className="text-sm sm:text-base text-[#2D3A30] leading-relaxed italic relative z-10 pl-3">
+                      <Quote className="w-6 h-6 text-[#2D6A4F]/20 absolute -top-2 -left-1 pointer-events-none" />
+                      <p className="text-xs sm:text-sm text-[#2D3A30] leading-relaxed italic relative z-10 pl-2">
                         {review.text}
                       </p>
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-4 border-t border-[#EAE3D6] flex items-center justify-between">
+                  <div className="mt-5 pt-3 border-t border-[#EAE3D6] flex items-center justify-between">
                     <div>
-                      <div className="font-bold text-sm sm:text-base text-[#1B4332] flex items-center gap-1.5">
+                      <div className="font-bold text-xs sm:text-sm text-[#1B4332] flex items-center gap-1">
                         <span>{review.name}</span>
-                        <CheckCircle2 className="w-4 h-4 text-[#2D6A4F]" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#2D6A4F]" />
                       </div>
-                      <div className="text-xs text-[#52796F] mt-0.5">
+                      <div className="text-[11px] text-[#52796F] mt-0.5 truncate max-w-[180px]">
                         {review.area}
                       </div>
                     </div>
-                    
-                    <div className="hidden sm:block text-[11px] font-bold text-[#2D6A4F] bg-white px-3 py-1.5 rounded-xl border border-[#2D6A4F]/20 shadow-xs">
-                      Verified Karachi Customer
-                    </div>
+                    {isActive && (
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#2D6A4F] shrink-0" />
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
           {/* Indicator Loop Dots */}
-          <div className="flex items-center justify-center gap-2 mt-5">
+          <div className="flex items-center justify-center gap-2 mt-6">
             {TESTIMONIALS.map((_, idx) => (
               <button
                 key={idx}
