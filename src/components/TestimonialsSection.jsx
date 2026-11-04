@@ -29,7 +29,7 @@ export default function TestimonialsSection() {
 
   return (
     <section id="reviews" className="py-16 bg-white border-b border-[#ECE7DC] overflow-hidden">
-      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-8 lg:px-12">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Rating Overview Header */}
         <div className="flex flex-col lg:flex-row items-center justify-between mb-10 gap-6 bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#E8E2D5]">

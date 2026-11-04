@@ -7,8 +7,8 @@ export default function Navbar({ cartCount, onOpenCart, onOpenSubscription }) {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/85 border-b border-black/[0.06] transition-all">
       {/* Top Ambient Announcement Strip */}
-      <div className="bg-gradient-to-r from-[#0E3524] via-[#1B4332] to-[#0E3524] text-white text-[11px] sm:text-xs py-2 px-3 sm:px-6 lg:px-12 border-b border-white/10">
-        <div className="max-w-[1600px] mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-2">
+      <div className="bg-gradient-to-r from-[#0E3524] via-[#1B4332] to-[#0E3524] text-white text-[11px] sm:text-xs py-2 px-4 sm:px-8 border-b border-white/10">
+        <div className="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-2">
           <div className="flex items-center gap-2 font-medium">
             <span className="flex h-2 w-2 rounded-full bg-[#4ADE80] animate-ping" />
             <span className="inline-flex items-center justify-center bg-white/15 text-[#86EFAC] text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">
@@ -36,7 +36,7 @@ export default function Navbar({ cartCount, onOpenCart, onOpenSubscription }) {
       </div>
 
       {/* Main Glass Navbar */}
-      <nav className="max-w-[1600px] mx-auto w-full px-3 sm:px-6 lg:px-12 h-18 sm:h-20 flex items-center justify-between">
+      <nav className="max-w-[1600px] mx-auto px-4 sm:px-8 h-18 sm:h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <a href="#" className="flex items-center gap-2.5 sm:gap-3 group">
           <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-[#1B4332] to-[#0B2B1E] text-white flex items-center justify-center font-serif text-2xl font-bold shadow-lg shadow-[#1B4332]/20 border border-white/20 group-hover:scale-105 transition-all">

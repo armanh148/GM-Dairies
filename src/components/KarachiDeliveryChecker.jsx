@@ -22,7 +22,7 @@ export default function KarachiDeliveryChecker() {
 
   return (
     <section id="delivery" className="py-16 sm:py-20 bg-[#FAF8F5]">
-      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-8 lg:px-12">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Header with Search and Navigation Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">

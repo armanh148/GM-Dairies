@@ -4,7 +4,7 @@ import { MapPin, Phone, Clock, Navigation, ExternalLink, MessageCircle, Sparkles
 export default function LocationCard() {
   return (
     <section id="location" className="py-16 sm:py-20 bg-white">
-      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-8 lg:px-12">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         <div className="bg-gradient-to-br from-[#FAF8F5] to-white rounded-3xl border border-[#E5DEC9] shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12">
