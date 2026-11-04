@@ -5,7 +5,7 @@ import { Heart, MessageCircle, ExternalLink, CheckCircle, Sparkles, ArrowRight }
 export default function InstagramStoryBanner({ onOpenSubscription }) {
   return (
     <section className="py-14 bg-white border-y border-[#ECE7DC] relative overflow-hidden">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-8 lg:px-12">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">

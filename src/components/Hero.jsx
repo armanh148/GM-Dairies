@@ -8,7 +8,7 @@ export default function Hero({ onOpenSubscription, onExploreProducts }) {
       <div className="absolute top-0 right-1/4 -mt-20 w-[500px] h-[500px] rounded-full bg-[#D8F3DC]/50 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -ml-20 w-[400px] h-[400px] rounded-full bg-[#FEF08A]/30 blur-3xl pointer-events-none" />
 
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Modern Hero Narrative */}

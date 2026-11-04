@@ -4,7 +4,7 @@ import { Phone, MapPin, Instagram, Facebook, MessageCircle, Heart, ShieldCheck, 
 export default function Footer({ onOpenSubscription }) {
   return (
     <footer className="bg-gradient-to-b from-[#091F15] via-[#0E2F21] to-[#06150E] text-[#E8F5E9] pt-16 pb-12 border-t border-[#1B4332]/40 relative overflow-hidden">
-      <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* Newsletter / Instant WhatsApp Inquiry Callout */}
         <div className="mb-14 p-6 sm:p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
