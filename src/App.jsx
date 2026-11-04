@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import TrustTicker from './components/TrustTicker';
 import InstagramStoryBanner from './components/InstagramStoryBanner';
 import SubscriptionPlanner from './components/SubscriptionPlanner';
 import ProductCatalog from './components/ProductCatalog';
@@ -10,9 +11,13 @@ import TestimonialsSection from './components/TestimonialsSection';
 import LocationCard from './components/LocationCard';
 import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
+import useScrollAnimation from './hooks/useScrollAnimation';
 import { MessageCircle, Phone, ArrowUp } from 'lucide-react';
 
 export default function App() {
+  // Activate IntersectionObserver for fluid scroll reveals
+  useScrollAnimation();
+
   const [cartItems, setCartItems] = useState([
     // Starter preview item
     {
@@ -83,11 +88,14 @@ export default function App() {
       />
 
       <main className="flex-1">
-        {/* Hero Section */}
+        {/* Hero Section with motion graphics */}
         <Hero
           onOpenSubscription={scrollToSubscription}
           onExploreProducts={scrollToProducts}
         />
+
+        {/* Continuous Flowing Trust Ticker Marquee */}
+        <TrustTicker />
 
         {/* Instagram Comments "Online Available?" Pitch Banner */}
         <InstagramStoryBanner onOpenSubscription={scrollToSubscription} />
@@ -127,16 +135,19 @@ export default function App() {
       {/* Footer */}
       <Footer onOpenSubscription={scrollToSubscription} />
 
-      {/* Floating Pakistani WhatsApp Hotspot button */}
+      {/* Floating Pakistani WhatsApp Hotspot button with Ping Indicator */}
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2.5">
         <a
           href="https://wa.me/923103510076?text=Assalam-o-Alaikum%20GM%20Dairies,%20I%20am%20visiting%20your%20website%20and%20want%20to%20order"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 border-2 border-white"
+          className="btn-shimmer group flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white"
           title="Direct WhatsApp Chat: 0310 3510076"
         >
-          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />
+          <div className="relative">
+            <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white animate-ping" />
+          </div>
           <span className="hidden sm:inline text-xs font-black tracking-wide pr-1">
             Order on WhatsApp (0310 3510076)
           </span>
@@ -145,4 +156,3 @@ export default function App() {
     </div>
   );
 }
-

@@ -26,12 +26,12 @@ export default function PurityGuarantee() {
   ];
 
   return (
-    <section id="purity" className="py-16 sm:py-20 bg-white border-y border-[#ECE7DC] relative">
+    <section id="purity" className="py-16 sm:py-20 bg-white border-y border-[#ECE7DC] relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-          <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs">
+        {/* Section Header with Scroll Animation */}
+        <div className="scroll-slide-up text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+          <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs hover:scale-105 transition-transform duration-300">
             <ShieldCheck className="w-4 h-4 text-[#2D6A4F]" />
             <span>The GM Purity Standard</span>
           </div>
@@ -43,20 +43,21 @@ export default function PurityGuarantee() {
           </p>
         </div>
 
-        {/* 4 Cards strictly in 1 Row on laptop/desktop using .grid-4-row */}
+        {/* 4 Cards strictly in 1 Row on laptop/desktop with Staggered Scroll Reveal */}
         <div className="grid-4-row">
           {points.map((pt, idx) => {
             const Icon = pt.icon;
+            const delays = ['delay-75', 'delay-150', 'delay-200', 'delay-300'];
             return (
               <div
                 key={idx}
-                className="group bg-gradient-to-b from-[#FAF8F5] to-white p-5 sm:p-6 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between h-full relative"
+                className={`scroll-slide-up ${delays[idx]} group bg-gradient-to-b from-[#FAF8F5] to-white p-5 sm:p-6 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/60 transition-all duration-400 ease-out hover:shadow-2xl hover:-translate-y-2 flex flex-col justify-between h-full relative cursor-default`}
               >
                 <div>
-                  <div className="w-12 h-12 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] group-hover:bg-[#1B4332] group-hover:text-white transition-colors flex items-center justify-center mb-4 shadow-xs">
-                    <Icon className="w-6 h-6" />
+                  <div className="w-12 h-12 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] group-hover:bg-[#1B4332] group-hover:text-white group-hover:rotate-6 transition-all duration-300 flex items-center justify-center mb-4 shadow-xs">
+                    <Icon className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="font-serif font-bold text-base sm:text-lg text-[#0E3524] mb-2 leading-snug">
+                  <h3 className="font-serif font-bold text-base sm:text-lg text-[#0E3524] mb-2 leading-snug group-hover:text-[#2D6A4F] transition-colors">
                     {pt.title}
                   </h3>
                   <p className="text-xs sm:text-[13px] text-[#52796F] leading-relaxed">
@@ -64,8 +65,8 @@ export default function PurityGuarantee() {
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3.5 border-t border-[#E8E2D5]/80 flex items-center gap-1.5 text-[11px] font-bold text-[#2D6A4F]">
-                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <div className="mt-5 pt-3.5 border-t border-[#E8E2D5]/80 flex items-center gap-1.5 text-[11px] font-bold text-[#2D6A4F] group-hover:text-[#1B4332] transition-colors">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />
                   <span>Lab-Verified Batch Check</span>
                 </div>
               </div>
@@ -73,9 +74,9 @@ export default function PurityGuarantee() {
           })}
         </div>
 
-        {/* At-Home Test Guarantee Box */}
-        <div className="mt-12 bg-gradient-to-r from-[#FAF8F5] via-[#F3EDE2] to-[#FAF8F5] rounded-3xl p-6 sm:p-8 border border-[#E2D9C8] flex flex-col md:flex-row items-center gap-6 shadow-xs">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1B4332] to-[#0E3524] text-white flex items-center justify-center shrink-0 text-3xl font-serif shadow-md">
+        {/* At-Home Test Guarantee Box with Gentle Float */}
+        <div className="scroll-slide-up delay-200 mt-12 bg-gradient-to-r from-[#FAF8F5] via-[#F3EDE2] to-[#FAF8F5] rounded-3xl p-6 sm:p-8 border border-[#E2D9C8] flex flex-col md:flex-row items-center gap-6 shadow-xs hover:shadow-lg transition-all duration-300">
+          <div className="animate-float w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1B4332] to-[#0E3524] text-white flex items-center justify-center shrink-0 text-3xl font-serif shadow-md">
             🥛
           </div>
           <div className="space-y-1 text-center md:text-left">

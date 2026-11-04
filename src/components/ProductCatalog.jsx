@@ -92,9 +92,9 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div className="scroll-slide-up flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-2.5 shadow-2xs">
+            <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-2.5 shadow-2xs hover:scale-105 transition-transform">
               <Sparkles className="w-3.5 h-3.5 text-[#2D6A4F]" />
               <span>Own-Packaged • Farm Chilled</span>
             </div>
@@ -111,14 +111,14 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
             <button
               onClick={() => handleScroll('left')}
               aria-label="Previous products"
-              className="w-10 h-10 rounded-2xl bg-white border border-[#D5CDC0] hover:border-[#2D6A4F] hover:bg-[#E8F5E9] text-[#0E3524] flex items-center justify-center shadow-xs transition-all active:scale-95"
+              className="w-10 h-10 rounded-2xl bg-white border border-[#D5CDC0] hover:border-[#2D6A4F] hover:bg-[#E8F5E9] text-[#0E3524] flex items-center justify-center shadow-xs hover:shadow-md transition-all active:scale-90"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => handleScroll('right')}
               aria-label="Next products"
-              className="w-10 h-10 rounded-2xl bg-[#1B4332] hover:bg-[#0E3524] text-white flex items-center justify-center shadow-md shadow-[#1B4332]/25 transition-all active:scale-95"
+              className="w-10 h-10 rounded-2xl bg-[#1B4332] hover:bg-[#0E3524] text-white flex items-center justify-center shadow-md shadow-[#1B4332]/25 hover:shadow-lg transition-all active:scale-90"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -126,7 +126,7 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
         </div>
 
         {/* Dynamic Filter Bar */}
-        <div className="bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-3xl border border-[#E8E2D5] shadow-xs mb-6 space-y-3.5 relative z-20">
+        <div className="scroll-slide-up delay-75 bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-3xl border border-[#E8E2D5] shadow-xs hover:shadow-md transition-shadow mb-6 space-y-3.5 relative z-20">
           
           {/* Top Row: Category Filter Pills */}
           <div className="flex items-center justify-between gap-3">
@@ -282,7 +282,7 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
         </div>
 
         {/* 5 In A Row Horizontal Interactive Slider */}
-        <div className="relative">
+        <div className="scroll-slide-up delay-150 relative">
           {filteredProducts.length > 0 ? (
             <div
               ref={sliderRef}
@@ -310,7 +310,7 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
               </p>
               <button
                 onClick={handleResetFilters}
-                className="mt-3 inline-flex items-center gap-1.5 bg-[#2D6A4F] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs"
+                className="mt-3 inline-flex items-center gap-1.5 bg-[#2D6A4F] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-xs hover:shadow-md transition-shadow"
               >
                 Reset All Filters
               </button>
@@ -331,10 +331,10 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
         </div>
 
         {/* Custom Wholesale / Bulk Family Orders Banner */}
-        <div className="mt-12 bg-gradient-to-r from-[#0E3524] via-[#1B4332] to-[#2D6A4F] text-white rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-white/10">
+        <div className="scroll-slide-up delay-200 mt-12 bg-gradient-to-r from-[#0E3524] via-[#1B4332] to-[#2D6A4F] text-white rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/10">
           <div className="space-y-1.5 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2 text-[#FDE047] text-xs font-extrabold uppercase tracking-wider">
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-4 h-4 animate-spin duration-3000" />
               <span>Bulk Orders & Special Events</span>
             </div>
             <h3 className="font-serif text-2xl font-bold">
@@ -350,14 +350,14 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
               href="https://wa.me/923103510076?text=Assalam-o-Alaikum%20GM%20Dairies,%20I%20want%20to%20discuss%20bulk%20milk%20or%20desi%20ghee%20order."
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#25D366] hover:bg-[#20ba5a] text-white px-5 py-3.5 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#25D366]/30"
+              className="btn-shimmer bg-[#25D366] hover:bg-[#20ba5a] text-white px-5 py-3.5 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#25D366]/30 hover:-translate-y-1"
             >
               <MessageCircle className="w-4 h-4" />
               Talk to GM Manager on WhatsApp
             </a>
             <a
               href="tel:+923103510076"
-              className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-5 py-3.5 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all"
+              className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-5 py-3.5 rounded-2xl font-bold text-xs flex items-center justify-center gap-2 transition-all hover:-translate-y-1"
             >
               <Phone className="w-4 h-4" /> Call 0310 3510076
             </a>

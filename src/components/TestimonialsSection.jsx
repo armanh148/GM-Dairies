@@ -32,7 +32,7 @@ export default function TestimonialsSection() {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Rating Overview Header */}
-        <div className="flex flex-col lg:flex-row items-center justify-between mb-10 gap-6 bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#E8E2D5]">
+        <div className="scroll-slide-up flex flex-col lg:flex-row items-center justify-between mb-10 gap-6 bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#E8E2D5] hover:shadow-md transition-shadow">
           <div className="text-center lg:text-left space-y-1">
             <span className="text-xs font-bold uppercase tracking-wider text-[#2D6A4F] bg-[#E8F5E9] px-3 py-1 rounded-full">
               4.8 ★ Verified Karachi Reviews
@@ -45,8 +45,8 @@ export default function TestimonialsSection() {
             </p>
           </div>
 
-          {/* 4.8 Rating Box */}
-          <div className="flex items-center gap-5 sm:gap-6 shrink-0 bg-white p-4 rounded-2xl border border-[#E5DEC9] shadow-xs">
+          {/* 4.8 Rating Box with hover scale */}
+          <div className="flex items-center gap-5 sm:gap-6 shrink-0 bg-white p-4 rounded-2xl border border-[#E5DEC9] shadow-xs hover:shadow-md hover:scale-105 transition-all duration-300">
             <div className="text-center border-r border-gray-200 pr-4 sm:pr-5">
               <div className="text-3xl sm:text-4xl font-black text-[#1B4332]">4.8</div>
               <div className="flex text-[#F4A261] mt-0.5 justify-center">
@@ -90,7 +90,7 @@ export default function TestimonialsSection() {
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Header Controls for Loop */}
-          <div className="flex items-center justify-between mb-4 px-1">
+          <div className="scroll-slide-up delay-75 flex items-center justify-between mb-4 px-1">
             <div className="flex items-center gap-2 text-xs font-bold text-[#1B4332]">
               <span className="flex h-2.5 w-2.5 rounded-full bg-[#25D366] animate-pulse" />
               <span>Live Reviews Loop (Review {currentIndex + 1} of {TESTIMONIALS.length})</span>
@@ -99,19 +99,19 @@ export default function TestimonialsSection() {
               </span>
             </div>
 
-            {/* Slider arrows */}
+            {/* Slider arrows with hover effects */}
             <div className="flex items-center gap-2">
               <button
                 onClick={handlePrev}
                 aria-label="Previous review"
-                className="w-10 h-10 rounded-xl bg-white border border-[#D5CDC0] hover:bg-[#E8F5E9] hover:border-[#2D6A4F] text-[#1B4332] flex items-center justify-center shadow-xs transition-all active:scale-95"
+                className="w-10 h-10 rounded-xl bg-white border border-[#D5CDC0] hover:bg-[#E8F5E9] hover:border-[#2D6A4F] text-[#1B4332] flex items-center justify-center shadow-xs hover:shadow-md transition-all active:scale-90"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={handleNext}
                 aria-label="Next review"
-                className="w-10 h-10 rounded-xl bg-[#1B4332] hover:bg-[#2D6A4F] text-white flex items-center justify-center shadow-sm transition-all active:scale-95"
+                className="w-10 h-10 rounded-xl bg-[#1B4332] hover:bg-[#2D6A4F] text-white flex items-center justify-center shadow-sm hover:shadow-md transition-all active:scale-90"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -122,24 +122,25 @@ export default function TestimonialsSection() {
           <div className="grid-4-row">
             {TESTIMONIALS.map((review, idx) => {
               const isActive = idx === currentIndex;
+              const delays = ['delay-75', 'delay-150', 'delay-200', 'delay-300'];
               return (
                 <div
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`cursor-pointer rounded-3xl p-5 sm:p-6 border transition-all duration-300 flex flex-col justify-between h-full relative ${
+                  className={`scroll-slide-up ${delays[idx]} cursor-pointer rounded-3xl p-5 sm:p-6 border transition-all duration-400 ease-out flex flex-col justify-between h-full relative ${
                     isActive
-                      ? 'bg-[#FAF7F2] border-[#2D6A4F] shadow-xl ring-2 ring-[#2D6A4F]/30 scale-[1.02]'
-                      : 'bg-white border-[#EAE3D6] opacity-90 hover:opacity-100 hover:border-gray-400 hover:shadow-md'
+                      ? 'bg-[#FAF7F2] border-[#2D6A4F] shadow-2xl ring-2 ring-[#2D6A4F]/30 -translate-y-2 scale-[1.02]'
+                      : 'bg-white border-[#EAE3D6] opacity-90 hover:opacity-100 hover:border-[#2D6A4F]/50 hover:shadow-xl hover:-translate-y-1'
                   }`}
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between gap-1">
                       <div className="flex text-[#F4A261]">
                         {[...Array(review.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-current" />
+                          <Star key={i} className="w-4 h-4 fill-current hover:scale-125 transition-transform" />
                         ))}
                       </div>
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border truncate ${
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border truncate transition-colors ${
                         isActive
                           ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]'
                           : 'bg-[#E8F5E9] text-[#2D6A4F] border-[#2D6A4F]/20'
@@ -158,7 +159,7 @@ export default function TestimonialsSection() {
 
                   <div className="mt-5 pt-3.5 border-t border-[#EAE3D6] flex items-center justify-between">
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#165B3D] to-[#0E3524] text-[#FDE047] text-[11px] font-black flex items-center justify-center shrink-0 shadow-2xs">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#165B3D] to-[#0E3524] text-[#FDE047] text-[11px] font-black flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-110 transition-transform">
                         {review.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
                       </div>
                       <div className="min-w-0">
@@ -180,7 +181,7 @@ export default function TestimonialsSection() {
             })}
           </div>
 
-          {/* Indicator Loop Dots */}
+          {/* Indicator Loop Dots with hover effects */}
           <div className="flex items-center justify-center gap-2 mt-6">
             {TESTIMONIALS.map((_, idx) => (
               <button
@@ -190,7 +191,7 @@ export default function TestimonialsSection() {
                 className={`transition-all duration-300 rounded-full ${
                   idx === currentIndex
                     ? 'w-8 h-2.5 bg-[#2D6A4F]'
-                    : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'
+                    : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400 hover:scale-125'
                 }`}
               />
             ))}

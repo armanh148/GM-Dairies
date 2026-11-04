@@ -25,9 +25,9 @@ export default function KarachiDeliveryChecker() {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Header with Search and Navigation Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div className="scroll-slide-up flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-2.5 shadow-2xs">
+            <div className="inline-flex items-center gap-1.5 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-2.5 shadow-2xs hover:scale-105 transition-transform">
               <Truck className="w-3.5 h-3.5 text-[#2D6A4F]" />
               <span>Morning Delivery Network</span>
             </div>
@@ -48,7 +48,7 @@ export default function KarachiDeliveryChecker() {
                 placeholder="Search area (e.g. Gulshan, DHA)..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-white border border-[#D5CDC0] rounded-2xl pl-9 pr-3 py-2.5 text-xs text-[#0E3524] shadow-xs focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]"
+                className="w-full bg-white border border-[#D5CDC0] rounded-2xl pl-9 pr-3 py-2.5 text-xs text-[#0E3524] shadow-xs focus:outline-none focus:ring-2 focus:ring-[#2D6A4F] hover:border-[#2D6A4F]/50 transition-colors"
               />
             </div>
 
@@ -57,14 +57,14 @@ export default function KarachiDeliveryChecker() {
               <button
                 onClick={() => handleScroll('left')}
                 aria-label="Previous areas"
-                className="w-10 h-10 rounded-2xl bg-white border border-[#D5CDC0] hover:border-[#2D6A4F] hover:bg-[#E8F5E9] text-[#0E3524] flex items-center justify-center shadow-xs transition-all active:scale-95"
+                className="w-10 h-10 rounded-2xl bg-white border border-[#D5CDC0] hover:border-[#2D6A4F] hover:bg-[#E8F5E9] text-[#0E3524] flex items-center justify-center shadow-xs hover:shadow-md transition-all active:scale-90"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={() => handleScroll('right')}
                 aria-label="Next areas"
-                className="w-10 h-10 rounded-2xl bg-[#1B4332] hover:bg-[#0E3524] text-white flex items-center justify-center shadow-md shadow-[#1B4332]/25 transition-all active:scale-95"
+                className="w-10 h-10 rounded-2xl bg-[#1B4332] hover:bg-[#0E3524] text-white flex items-center justify-center shadow-md shadow-[#1B4332]/25 hover:shadow-lg transition-all active:scale-90"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -73,7 +73,7 @@ export default function KarachiDeliveryChecker() {
         </div>
 
         {/* 5 in a row Horizontal Interactive Slider */}
-        <div className="relative">
+        <div className="scroll-slide-up delay-100 relative">
           <div
             ref={sliderRef}
             className="flex gap-3.5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pt-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -81,7 +81,7 @@ export default function KarachiDeliveryChecker() {
             {filteredAreas.map((area, idx) => (
               <div
                 key={idx}
-                className="slider-5-col snap-start bg-white p-5 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between"
+                className="slider-5-col snap-start bg-white p-5 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/60 transition-all duration-400 ease-out hover:shadow-2xl hover:-translate-y-2 flex flex-col justify-between"
               >
                 <div>
                   {/* Area Title & Status */}

@@ -85,8 +85,8 @@ export default function SubscriptionPlanner() {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8 relative z-10">
         
         {/* Title Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] border border-[#2D6A4F]/20 px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs">
+        <div className="scroll-slide-up text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] border border-[#2D6A4F]/20 px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs hover:scale-105 transition-transform">
             <Sparkles className="w-4 h-4 text-[#2D6A4F]" />
             <span>Smart Morning Milk Planner</span>
           </div>
@@ -102,7 +102,7 @@ export default function SubscriptionPlanner() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Controls Column (Left) */}
-          <div className="lg:col-span-7 bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#E3DAC8] shadow-xl space-y-6">
+          <div className="scroll-slide-up delay-100 lg:col-span-7 bg-white/95 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-[#E3DAC8] shadow-xl hover:shadow-2xl transition-shadow duration-300 space-y-6">
             
             {/* Step 1: Milk Type Selection */}
             <div>
@@ -372,10 +372,10 @@ export default function SubscriptionPlanner() {
           </div>
 
           {/* Summary Column (Right) */}
-          <div className="lg:col-span-5 space-y-5 lg:sticky lg:top-24">
+          <div className="scroll-slide-up delay-200 lg:col-span-5 space-y-5 lg:sticky lg:top-24">
             
             {/* Live Pricing Breakdown Card */}
-            <div className="bg-gradient-to-br from-[#0B2B1E] via-[#1B4332] to-[#0E3524] text-white p-7 rounded-3xl shadow-2xl relative overflow-hidden border border-white/10">
+            <div className="bg-gradient-to-br from-[#0B2B1E] via-[#1B4332] to-[#0E3524] text-white p-7 rounded-3xl shadow-2xl relative overflow-hidden border border-white/10 hover:shadow-[0_25px_60px_-15px_rgba(14,53,36,0.35)] transition-shadow duration-300">
               <div className="absolute top-0 right-0 w-44 h-44 bg-[#4ADE80]/15 rounded-full blur-3xl pointer-events-none" />
 
               <div className="flex items-center justify-between pb-4 border-b border-white/15">
@@ -385,7 +385,7 @@ export default function SubscriptionPlanner() {
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl font-bold mt-0.5">Your Breakfast Plan</h3>
                 </div>
-                <div className="bg-[#2D6A4F] text-[#FDE047] text-xs font-black px-3 py-1 rounded-full border border-white/20">
+                <div className="bg-[#2D6A4F] text-[#FDE047] text-xs font-black px-3 py-1 rounded-full border border-white/20 animate-pulse">
                   Save 5%
                 </div>
               </div>
@@ -432,10 +432,10 @@ export default function SubscriptionPlanner() {
                 </div>
               </div>
 
-              {/* Action Button: Book via WhatsApp */}
+              {/* Action Button: Book via WhatsApp with Button Shimmer & Motion */}
               <button
                 onClick={handleWhatsAppBooking}
-                className="mt-6 w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 px-4 rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-[#25D366]/30 transition-transform active:scale-98"
+                className="btn-shimmer mt-6 w-full bg-[#25D366] hover:bg-[#20ba5a] text-white py-4 px-4 rounded-2xl font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 active:translate-y-0"
               >
                 <MessageCircle className="w-5 h-5 fill-current" />
                 Activate Plan on WhatsApp (0310 3510076)

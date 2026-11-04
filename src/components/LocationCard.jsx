@@ -6,13 +6,13 @@ export default function LocationCard() {
     <section id="location" className="py-16 sm:py-20 bg-white">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
-        <div className="bg-gradient-to-br from-[#FAF8F5] to-white rounded-3xl border border-[#E5DEC9] shadow-xl overflow-hidden">
+        <div className="scroll-slide-up bg-gradient-to-br from-[#FAF8F5] to-white rounded-3xl border border-[#E5DEC9] shadow-xl hover:shadow-2xl transition-all duration-400 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12">
             
             {/* Store Information */}
             <div className="lg:col-span-7 p-8 sm:p-12 space-y-6">
               <div>
-                <span className="text-xs font-extrabold uppercase tracking-wider text-[#2D6A4F] bg-[#E8F5E9] px-3.5 py-1.5 rounded-full shadow-2xs">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[#2D6A4F] bg-[#E8F5E9] px-3.5 py-1.5 rounded-full shadow-2xs hover:scale-105 transition-transform inline-block">
                   Flagship Store & Distribution Depot
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-black text-[#0E3524] mt-3.5">
@@ -23,26 +23,26 @@ export default function LocationCard() {
                 </p>
               </div>
 
-              {/* Info Badges */}
+              {/* Info Badges with Hover Micro-interactions */}
               <div className="space-y-4 text-xs sm:text-sm">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                    <MapPin className="w-5 h-5" />
+                <div className="group flex items-start gap-3.5 cursor-default">
+                  <div className="w-10 h-10 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] group-hover:bg-[#1B4332] group-hover:text-white group-hover:rotate-6 transition-all duration-300 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                    <MapPin className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </div>
                   <div>
-                    <strong className="block text-[#0E3524] font-bold">Physical Address:</strong>
+                    <strong className="block text-[#0E3524] font-bold group-hover:text-[#2D6A4F] transition-colors">Physical Address:</strong>
                     <span className="text-[#4F6358]">
                       Near Moti Mahal, Block 2, Gulshan-e-Iqbal, Karachi, Pakistan
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                    <Phone className="w-5 h-5" />
+                <div className="group flex items-start gap-3.5 cursor-default">
+                  <div className="w-10 h-10 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] group-hover:bg-[#1B4332] group-hover:text-white group-hover:rotate-6 transition-all duration-300 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                    <Phone className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </div>
                   <div>
-                    <strong className="block text-[#0E3524] font-bold">Direct Phone & WhatsApp Hotline:</strong>
+                    <strong className="block text-[#0E3524] font-bold group-hover:text-[#2D6A4F] transition-colors">Direct Phone & WhatsApp Hotline:</strong>
                     <a
                       href="tel:+923103510076"
                       className="text-[#2D6A4F] font-bold hover:underline"
@@ -53,12 +53,12 @@ export default function LocationCard() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
-                    <Clock className="w-5 h-5" />
+                <div className="group flex items-start gap-3.5 cursor-default">
+                  <div className="w-10 h-10 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] group-hover:bg-[#1B4332] group-hover:text-white group-hover:rotate-6 transition-all duration-300 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                    <Clock className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   </div>
                   <div>
-                    <strong className="block text-[#0E3524] font-bold">Operating Timings:</strong>
+                    <strong className="block text-[#0E3524] font-bold group-hover:text-[#2D6A4F] transition-colors">Operating Timings:</strong>
                     <span className="text-[#4F6358]">
                       Open 7 Days a Week: 6:00 AM – 11:00 PM
                     </span>
@@ -67,13 +67,13 @@ export default function LocationCard() {
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons with Shimmer & Hover Lift */}
               <div className="pt-2 flex flex-wrap gap-3">
                 <a
                   href="https://maps.google.com/?q=Moti+Mahal+Gulshan-e-Iqbal+Block+2+Karachi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#1B4332] hover:bg-[#0E3524] text-white px-5 py-3 rounded-2xl font-bold text-xs shadow-md shadow-[#1B4332]/25 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                  className="btn-shimmer inline-flex items-center gap-2 bg-[#1B4332] hover:bg-[#0E3524] text-white px-5 py-3 rounded-2xl font-bold text-xs shadow-md shadow-[#1B4332]/25 transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
                 >
                   <Navigation className="w-4 h-4" />
                   Get Google Maps Directions
@@ -82,7 +82,7 @@ export default function LocationCard() {
                   href="https://wa.me/923103510076?text=Assalam-o-Alaikum%20GM%20Dairies,%20I%20am%20near%20Moti%20Mahal%20and%20want%20to%20visit%20your%20shop"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white px-5 py-3 rounded-2xl font-bold text-xs shadow-md shadow-[#25D366]/25 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                  className="btn-shimmer inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba5a] text-white px-5 py-3 rounded-2xl font-bold text-xs shadow-md shadow-[#25D366]/25 transition-all duration-300 hover:-translate-y-1 active:translate-y-0"
                 >
                   <MessageCircle className="w-4 h-4" />
                   Chat on WhatsApp
