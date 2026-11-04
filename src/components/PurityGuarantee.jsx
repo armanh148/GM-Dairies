@@ -43,8 +43,8 @@ export default function PurityGuarantee() {
           </p>
         </div>
 
-        {/* Mobile: 2 in 1 Row (grid-cols-2) • Desktop: Strictly 4 in 1 Row (lg:grid-cols-4) */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {/* Mobile: 2 in 1 Row (grid-cols-2) • Desktop & Laptop: Strictly 4 in 1 Row (md:grid-cols-4) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {points.map((pt, idx) => {
             const Icon = pt.icon;
             const delays = ['delay-75', 'delay-150', 'delay-200', 'delay-300'];
