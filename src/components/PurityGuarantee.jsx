@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Droplet, ThermometerSnowflake, Heart, CheckCircle2, Award } from 'lucide-react';
+import { ShieldCheck, Droplet, ThermometerSnowflake, Heart, CheckCircle2, Award, Sparkles } from 'lucide-react';
 
 export default function PurityGuarantee() {
   const points = [
@@ -26,16 +26,16 @@ export default function PurityGuarantee() {
   ];
 
   return (
-    <section id="purity" className="py-16 bg-white border-y border-[#ECE7DC]">
+    <section id="purity" className="py-16 sm:py-20 bg-white border-y border-[#ECE7DC] relative">
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#1B4332] px-3.5 py-1 rounded-full text-xs font-bold mb-3">
+          <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs">
             <ShieldCheck className="w-4 h-4 text-[#2D6A4F]" />
-            <span>The GM Dairies Standard</span>
+            <span>The GM Purity Standard</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#1B4332]">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#0E3524]">
             Why Karachi Families Trust GM Dairies
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[#52796F]">
@@ -43,20 +43,20 @@ export default function PurityGuarantee() {
           </p>
         </div>
 
-        {/* Purity Cards Grid: Exactly 4 in one row (lg:grid-cols-4) */}
+        {/* 4 Cards in 1 Row (lg:grid-cols-4) with modern bento aesthetic */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {points.map((pt, idx) => {
             const Icon = pt.icon;
             return (
               <div
                 key={idx}
-                className="bg-[#FAF7F2] p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/40 transition-all hover:shadow-lg flex flex-col justify-between h-full"
+                className="group bg-gradient-to-b from-[#FAF8F5] to-white p-6 sm:p-7 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between h-full relative"
               >
                 <div>
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center mb-3 sm:mb-4">
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <div className="w-12 h-12 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] group-hover:bg-[#1B4332] group-hover:text-white transition-colors flex items-center justify-center mb-4 shadow-xs">
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-serif font-bold text-sm sm:text-base text-[#1B4332] mb-1.5 leading-snug">
+                  <h3 className="font-serif font-bold text-base text-[#0E3524] mb-2 leading-snug">
                     {pt.title}
                   </h3>
                   <p className="text-xs text-[#52796F] leading-relaxed">
@@ -64,25 +64,25 @@ export default function PurityGuarantee() {
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-[#E8E2D5]/80 flex items-center gap-1.5 text-[11px] font-bold text-[#2D6A4F]">
-                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                  <span className="truncate">Lab-Verified Check</span>
+                <div className="mt-5 pt-3.5 border-t border-[#E8E2D5]/80 flex items-center gap-1.5 text-[11px] font-bold text-[#2D6A4F]">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  <span>Lab-Verified Batch Check</span>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Lactometer / Test at Home Prompt */}
-        <div className="mt-12 bg-[#FAF7F2] rounded-3xl p-6 sm:p-8 border border-[#E2D9C8] flex flex-col md:flex-row items-center gap-6">
-          <div className="w-16 h-16 rounded-2xl bg-[#1B4332] text-white flex items-center justify-center shrink-0 text-3xl font-serif">
+        {/* At-Home Test Guarantee Box */}
+        <div className="mt-12 bg-gradient-to-r from-[#FAF8F5] via-[#F3EDE2] to-[#FAF8F5] rounded-3xl p-6 sm:p-8 border border-[#E2D9C8] flex flex-col md:flex-row items-center gap-6 shadow-xs">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1B4332] to-[#0E3524] text-white flex items-center justify-center shrink-0 text-3xl font-serif shadow-md">
             🥛
           </div>
           <div className="space-y-1 text-center md:text-left">
-            <h4 className="font-serif text-lg font-bold text-[#1B4332]">
+            <h4 className="font-serif text-lg sm:text-xl font-bold text-[#0E3524]">
               We Welcome Your Own At-Home Purity Test!
             </h4>
-            <p className="text-xs sm:text-sm text-[#52796F]">
+            <p className="text-xs sm:text-sm text-[#52796F] leading-relaxed">
               Boil our milk and observe the thick golden cream (malai) layer. You can also test with your own household lactometer. If you find any water added or adulteration, we will refund your entire month's subscription with zero questions asked!
             </p>
           </div>
@@ -92,4 +92,3 @@ export default function PurityGuarantee() {
     </section>
   );
 }
-
