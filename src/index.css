@@ -3,7 +3,7 @@
 @layer base {
   :root {
     --font-serif: 'Playfair Display', Georgia, serif;
-    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
   }
 
   body {
@@ -16,50 +16,49 @@
 
   h1, h2, h3, .font-serif {
     font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 }
 
-/* Modern luxury glows and micro-animations */
+/* Luxury animations */
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(0.5deg); }
+  50% { transform: translateY(-7px) rotate(0.6deg); }
 }
 
-@keyframes pulseSubtle {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.03); }
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-float {
   animation: floatSlow 5s ease-in-out infinite;
 }
 
-.animate-pulse-subtle {
-  animation: pulseSubtle 3s ease-in-out infinite;
+.animate-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* Glassmorphism utilities */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+/* Glassmorphism & Luxury Cards */
+.luxury-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(22, 91, 61, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(14, 53, 36, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-panel-dark {
-  background: rgba(15, 45, 32, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.luxury-card:hover {
+  border-color: rgba(22, 91, 61, 0.22);
+  box-shadow: 0 20px 40px -10px rgba(14, 53, 36, 0.12);
+  transform: translateY(-4px);
 }
 
-/* Custom modern scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -68,9 +67,9 @@
   background: #F1EDE5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2D6A4F;
+  background: #1B4332;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #1B4332;
+  background: #0E3524;
 }

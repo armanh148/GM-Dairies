@@ -156,18 +156,23 @@ export default function TestimonialsSection() {
                     </div>
                   </div>
 
-                  <div className="mt-5 pt-3 border-t border-[#EAE3D6] flex items-center justify-between">
-                    <div>
-                      <div className="font-bold text-xs sm:text-sm text-[#1B4332] flex items-center gap-1">
-                        <span>{review.name}</span>
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#2D6A4F]" />
+                  <div className="mt-5 pt-3.5 border-t border-[#EAE3D6] flex items-center justify-between">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#165B3D] to-[#0E3524] text-[#FDE047] text-[11px] font-black flex items-center justify-center shrink-0 shadow-2xs">
+                        {review.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
                       </div>
-                      <div className="text-[11px] text-[#52796F] mt-0.5 truncate max-w-[180px]">
-                        {review.area}
+                      <div className="min-w-0">
+                        <div className="font-bold text-xs sm:text-sm text-[#0E3524] flex items-center gap-1 truncate">
+                          <span>{review.name}</span>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#165B3D] shrink-0" />
+                        </div>
+                        <div className="text-[10px] text-[#52796F] truncate">
+                          {review.area}
+                        </div>
                       </div>
                     </div>
                     {isActive && (
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#2D6A4F] shrink-0" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#165B3D] shrink-0 animate-ping" />
                     )}
                   </div>
                 </div>
