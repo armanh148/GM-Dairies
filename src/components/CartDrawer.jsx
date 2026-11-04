@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Trash2, Plus, Minus, MessageCircle, ShoppingBag, ShieldCheck, Truck } from 'lucide-react';
+import { X, Trash2, Plus, Minus, MessageCircle, ShoppingBag, ShieldCheck, Truck, ChevronDown } from 'lucide-react';
 
 export default function CartDrawer({
   isOpen,
@@ -172,20 +172,23 @@ export default function CartDrawer({
                       className="w-full bg-[#FAF7F2] border border-[#D5CDC0] rounded-xl px-3 py-2 text-xs text-[#1B4332] focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]"
                     />
 
-                    <select
-                      value={selectedArea}
-                      onChange={(e) => setSelectedArea(e.target.value)}
-                      className="w-full bg-[#FAF7F2] border border-[#D5CDC0] rounded-xl px-3 py-2 text-xs text-[#1B4332] focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]"
-                    >
-                      <option value="Gulshan-e-Iqbal (Near Moti Mahal)">Gulshan-e-Iqbal</option>
-                      <option value="Gulistan-e-Johar">Gulistan-e-Johar</option>
-                      <option value="Federal B Area">Federal B Area</option>
-                      <option value="PECHS / Bahadurabad">PECHS / Bahadurabad</option>
-                      <option value="Clifton & DHA">Clifton & DHA</option>
-                      <option value="North Nazimabad">North Nazimabad</option>
-                      <option value="Malir Cantt / Scheme 33">Malir Cantt / Scheme 33</option>
-                      <option value="Other Karachi Area">Other Karachi Area</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={selectedArea}
+                        onChange={(e) => setSelectedArea(e.target.value)}
+                        className="w-full bg-[#FAF7F2] border border-[#D5CDC0] rounded-xl pl-3.5 pr-9 py-2 text-xs text-[#1B4332] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2D6A4F] hover:bg-white transition-colors"
+                      >
+                        <option value="Gulshan-e-Iqbal (Near Moti Mahal)">Gulshan-e-Iqbal</option>
+                        <option value="Gulistan-e-Johar">Gulistan-e-Johar</option>
+                        <option value="Federal B Area">Federal B Area</option>
+                        <option value="PECHS / Bahadurabad">PECHS / Bahadurabad</option>
+                        <option value="Clifton & DHA">Clifton & DHA</option>
+                        <option value="North Nazimabad">North Nazimabad</option>
+                        <option value="Malir Cantt / Scheme 33">Malir Cantt / Scheme 33</option>
+                        <option value="Other Karachi Area">Other Karachi Area</option>
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-[#2D6A4F] absolute right-3 top-2.5 pointer-events-none" />
+                    </div>
 
                     <input
                       type="text"
@@ -195,15 +198,18 @@ export default function CartDrawer({
                       className="w-full bg-[#FAF7F2] border border-[#D5CDC0] rounded-xl px-3 py-2 text-xs text-[#1B4332] focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]"
                     />
 
-                    <select
-                      value={deliverySlot}
-                      onChange={(e) => setDeliverySlot(e.target.value)}
-                      className="w-full bg-[#FAF7F2] border border-[#D5CDC0] rounded-xl px-3 py-2 text-xs text-[#1B4332] focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]"
-                    >
-                      <option value="Early Morning (5:30 AM – 7:00 AM)">Early Morning (5:30 AM – 7:00 AM)</option>
-                      <option value="Breakfast Slot (7:00 AM – 8:30 AM)">Breakfast Slot (7:00 AM – 8:30 AM)</option>
-                      <option value="Evening Slot (5:00 PM – 7:00 PM)">Evening Slot (5:00 PM – 7:00 PM)</option>
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={deliverySlot}
+                        onChange={(e) => setDeliverySlot(e.target.value)}
+                        className="w-full bg-[#FAF7F2] border border-[#D5CDC0] rounded-xl pl-3.5 pr-9 py-2 text-xs text-[#1B4332] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2D6A4F] hover:bg-white transition-colors"
+                      >
+                        <option value="Early Morning (5:30 AM – 7:00 AM)">Early Morning (5:30 AM – 7:00 AM)</option>
+                        <option value="Breakfast Slot (7:00 AM – 8:30 AM)">Breakfast Slot (7:00 AM – 8:30 AM)</option>
+                        <option value="Evening Slot (5:00 PM – 7:00 PM)">Evening Slot (5:00 PM – 7:00 PM)</option>
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-[#2D6A4F] absolute right-3 top-2.5 pointer-events-none" />
+                    </div>
 
                     <input
                       type="text"

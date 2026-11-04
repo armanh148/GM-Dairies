@@ -1,14 +1,33 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { PRODUCTS, CATEGORIES } from '../data/products';
 import ProductCard from './ProductCard';
-import { Sparkles, MessageCircle, Phone, ChevronLeft, ChevronRight, Search, ArrowUpDown, X } from 'lucide-react';
+import { Sparkles, MessageCircle, Phone, ChevronLeft, ChevronRight, Search, ArrowUpDown, X, ChevronDown, Check, SlidersHorizontal } from 'lucide-react';
+
+const SORT_OPTIONS = [
+  { value: 'featured', label: 'Featured' },
+  { value: 'price-asc', label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+];
 
 export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
+  const [isSortOpen, setIsSortOpen] = useState(false);
   const [subscriptionOnly, setSubscriptionOnly] = useState(false);
   const sliderRef = useRef(null);
+  const sortDropdownRef = useRef(null);
+
+  // Close custom sort dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (sortDropdownRef.current && !sortDropdownRef.current.contains(e.target)) {
+        setIsSortOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Category counts
   const categoryCounts = useMemo(() => {
@@ -107,7 +126,7 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
         </div>
 
         {/* Dynamic Filter Bar */}
-        <div className="bg-white/90 backdrop-blur-md p-4 sm:p-5 rounded-3xl border border-[#E8E2D5] shadow-xs mb-6 space-y-3.5">
+        <div className="bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-3xl border border-[#E8E2D5] shadow-xs mb-6 space-y-3.5 relative z-20">
           
           {/* Top Row: Category Filter Pills */}
           <div className="flex items-center justify-between gap-3">
@@ -164,32 +183,76 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
               )}
             </div>
 
-            {/* Quick Filter: Subscription Only & Sort */}
+            {/* Quick Filter: Subscription Only & Custom Sort Dropdown */}
             <div className="flex items-center gap-2.5 self-end sm:self-auto flex-wrap">
-              <label className="inline-flex items-center gap-1.5 cursor-pointer bg-[#FAF8F5] px-3 py-1.5 rounded-xl border border-[#D5CDC0] hover:bg-[#EAE4D9] transition-colors">
-                <input
-                  type="checkbox"
-                  checked={subscriptionOnly}
-                  onChange={(e) => setSubscriptionOnly(e.target.checked)}
-                  className="accent-[#2D6A4F] w-3.5 h-3.5 rounded"
+              
+              {/* Modern Subscription Toggle Button */}
+              <button
+                type="button"
+                onClick={() => setSubscriptionOnly((prev) => !prev)}
+                className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl text-[11px] font-bold transition-all border ${
+                  subscriptionOnly
+                    ? 'bg-[#1B4332] text-white border-[#1B4332] shadow-sm'
+                    : 'bg-[#FAF8F5] hover:bg-[#F2ECE1] text-[#3E5247] border-[#D5CDC0]'
+                }`}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    subscriptionOnly ? 'bg-[#4ADE80] animate-pulse' : 'bg-gray-300'
+                  }`}
                 />
-                <span className="text-[11px] font-bold text-[#0E3524]">
-                  Subscription Only
-                </span>
-              </label>
+                <span>Daily Subscription Only</span>
+              </button>
 
-              {/* Sort by dropdown */}
-              <div className="flex items-center gap-1.5 bg-[#FAF8F5] px-2.5 py-1.5 rounded-xl border border-[#D5CDC0]">
-                <ArrowUpDown className="w-3 h-3 text-gray-500" />
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-transparent text-[11px] font-bold text-[#0E3524] focus:outline-none cursor-pointer"
+              {/* Custom Luxury Sort Dropdown (Replacing ugly native OS select) */}
+              <div className="relative" ref={sortDropdownRef}>
+                <button
+                  type="button"
+                  onClick={() => setIsSortOpen((prev) => !prev)}
+                  className={`inline-flex items-center gap-2 px-3 py-2 rounded-xl text-[11px] font-bold transition-all border ${
+                    isSortOpen
+                      ? 'bg-[#E8F5E9] text-[#0E3524] border-[#2D6A4F] shadow-sm ring-2 ring-[#2D6A4F]/20'
+                      : 'bg-[#FAF8F5] hover:bg-[#F2ECE1] text-[#0E3524] border-[#D5CDC0]'
+                  }`}
                 >
-                  <option value="featured">Featured</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                </select>
+                  <ArrowUpDown className="w-3 h-3 text-[#2D6A4F]" />
+                  <span>{SORT_OPTIONS.find((opt) => opt.value === sortBy)?.label || 'Featured'}</span>
+                  <ChevronDown
+                    className={`w-3.5 h-3.5 text-gray-500 transition-transform duration-200 ${
+                      isSortOpen ? 'rotate-180 text-[#2D6A4F]' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Custom Popover Menu */}
+                {isSortOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white/98 backdrop-blur-md rounded-2xl border border-[#D5CDC0] shadow-xl p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-gray-400 px-2.5 py-1.5">
+                      Sort Products
+                    </div>
+                    {SORT_OPTIONS.map((option) => {
+                      const isSelected = sortBy === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          onClick={() => {
+                            setSortBy(option.value);
+                            setIsSortOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-left transition-colors ${
+                            isSelected
+                              ? 'bg-[#1B4332] text-white font-bold shadow-xs'
+                              : 'text-[#0E3524] hover:bg-[#FAF8F5]'
+                          }`}
+                        >
+                          <span>{option.label}</span>
+                          {isSelected && <Check className="w-3.5 h-3.5 text-[#FDE047]" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               {/* Reset filter button if any active */}
