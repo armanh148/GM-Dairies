@@ -61,29 +61,29 @@ export default function ProductCard({ product, onAddToCart, onOpenSubscription }
         </div>
 
         {/* Content Info */}
-        <div className="p-4 sm:p-5 space-y-2">
+        <div className="p-3.5 sm:p-4 space-y-1.5">
           <div>
-            <h3 className="font-serif font-bold text-base sm:text-lg text-[#1B4332] group-hover:text-[#2D6A4F] transition-colors leading-snug">
+            <h3 className="font-serif font-bold text-sm sm:text-base text-[#1B4332] group-hover:text-[#2D6A4F] transition-colors leading-snug truncate">
               {product.name}
             </h3>
-            <p className="text-[11px] font-semibold text-[#8C7A5B] tracking-wide mt-0.5">
+            <p className="text-[10px] sm:text-[11px] font-semibold text-[#8C7A5B] tracking-wide mt-0.5 truncate">
               {product.tagline}
             </p>
           </div>
 
-          <p className="text-xs text-[#52796F] line-clamp-2 leading-relaxed">
+          <p className="text-[11px] sm:text-xs text-[#52796F] line-clamp-2 leading-relaxed">
             {product.description}
           </p>
 
           {/* Options (for Ghee 500g vs 1kg) */}
           {product.options && (
-            <div className="pt-1 flex flex-wrap gap-1.5">
+            <div className="pt-0.5 flex flex-wrap gap-1">
               {product.options.map((opt, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => setSelectedOption(opt)}
-                  className={`text-[10px] font-bold px-2 py-1 rounded-lg border transition-all ${
+                  className={`text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-md border transition-all ${
                     selectedOption?.size === opt.size
                       ? 'border-[#2D6A4F] bg-[#E8F5E9] text-[#1B4332]'
                       : 'border-gray-200 text-gray-600 hover:bg-gray-50'
@@ -96,11 +96,11 @@ export default function ProductCard({ product, onAddToCart, onOpenSubscription }
           )}
 
           {/* Feature Bullets */}
-          <div className="pt-1.5 flex flex-wrap gap-1">
-            {product.features.slice(0, 3).map((feat, idx) => (
+          <div className="pt-1 flex flex-wrap gap-1">
+            {product.features.slice(0, 2).map((feat, idx) => (
               <span
                 key={idx}
-                className="text-[9px] sm:text-[10px] font-medium bg-[#FAF7F2] text-[#3F4E4F] px-1.5 sm:px-2 py-0.5 rounded-md border border-[#E9E3D5]"
+                className="text-[8px] sm:text-[9px] font-medium bg-[#FAF7F2] text-[#3F4E4F] px-1.5 py-0.5 rounded-md border border-[#E9E3D5] truncate max-w-full"
               >
                 ✓ {feat}
               </span>
@@ -110,27 +110,27 @@ export default function ProductCard({ product, onAddToCart, onOpenSubscription }
       </div>
 
       {/* Pricing & Action Bar */}
-      <div className="p-3.5 sm:p-5 pt-0">
-        <div className="pt-2.5 sm:pt-3 border-t border-[#EAE3D6] flex items-center justify-between gap-1.5 sm:gap-2">
+      <div className="p-3 sm:p-4 pt-0">
+        <div className="pt-2 border-t border-[#EAE3D6] flex items-center justify-between gap-1">
           <div className="min-w-0">
-            <div className="text-[9px] sm:text-[10px] text-gray-500 font-medium truncate">{currentUnit}</div>
-            <div className="font-black text-base sm:text-xl text-[#1B4332]">
+            <div className="text-[8px] sm:text-[9px] text-gray-500 font-medium truncate">{currentUnit}</div>
+            <div className="font-black text-sm sm:text-base text-[#1B4332]">
               Rs. {currentPrice.toLocaleString()}
             </div>
           </div>
 
-          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+          <div className="flex items-center gap-1 shrink-0">
             <button
               onClick={handleWhatsAppDirect}
               title="Order on WhatsApp"
-              className="p-1.5 sm:p-2.5 rounded-xl bg-[#E8F5E9] hover:bg-[#D8F3DC] text-[#25D366] border border-[#2D6A4F]/20 transition-all hover:scale-105 active:scale-95"
+              className="p-1.5 rounded-xl bg-[#E8F5E9] hover:bg-[#D8F3DC] text-[#25D366] border border-[#2D6A4F]/20 transition-all hover:scale-105 active:scale-95"
             >
-              <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+              <MessageCircle className="w-3.5 h-3.5 fill-current" />
             </button>
 
             <button
               onClick={handleAdd}
-              className={`inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all active:scale-95 shadow-sm ${
+              className={`inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-[10px] sm:text-[11px] font-bold transition-all active:scale-95 shadow-sm ${
                 addedAnimation
                   ? 'bg-[#2D6A4F] text-white'
                   : 'bg-[#1B4332] hover:bg-[#2D6A4F] text-white'
@@ -138,13 +138,12 @@ export default function ProductCard({ product, onAddToCart, onOpenSubscription }
             >
               {addedAnimation ? (
                 <>
-                  <Check className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> <span>Added</span>
+                  <Check className="w-3 h-3" /> <span>Added</span>
                 </>
               ) : (
                 <>
-                  <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> 
-                  <span className="hidden xs:inline">Add to Cart</span>
-                  <span className="xs:hidden">Add</span>
+                  <Plus className="w-3 h-3" /> 
+                  <span className="hidden sm:inline">Add</span>
                 </>
               )}
             </button>

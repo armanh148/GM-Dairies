@@ -64,7 +64,7 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
 
   const handleScroll = (direction) => {
     if (sliderRef.current) {
-      const scrollAmount = sliderRef.current.clientWidth * 0.52; // scrolls 1 pair of 2
+      const scrollAmount = sliderRef.current.clientWidth * 0.75;
       sliderRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -222,17 +222,17 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
           </div>
         </div>
 
-        {/* 2 In A Row Horizontal Interactive Slider */}
+        {/* 5 In A Row Horizontal Interactive Slider */}
         <div className="relative">
           {filteredProducts.length > 0 ? (
             <div
               ref={sliderRef}
-              className="flex gap-3 sm:gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pt-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-3.5 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 pt-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="snap-start shrink-0 w-[calc(50%-6px)] sm:w-[calc(50%-10px)] h-auto flex flex-col"
+                  className="snap-start shrink-0 w-[80%] sm:w-[calc(50%-8px)] md:w-[calc(33.333%-10px)] lg:w-[calc(25%-11px)] xl:w-[calc(20%-11.5px)] h-auto flex flex-col"
                 >
                   <ProductCard
                     product={product}
@@ -262,7 +262,7 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
           {filteredProducts.length > 0 && (
             <div className="flex items-center justify-between mt-2 text-xs text-gray-400">
               <span className="text-[11px] text-[#52796F] font-medium">
-                💡 Slide horizontally or use arrows to view items (2 products per row)
+                💡 Slide horizontally or use arrows to view items (5 products per row on desktop)
               </span>
               <span className="text-[11px] font-semibold text-[#1B4332]">
                 100% Pure Organic Guarantee
