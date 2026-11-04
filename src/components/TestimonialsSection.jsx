@@ -6,6 +6,7 @@ export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const autoPlayRef = useRef(null);
+  const sliderRef = useRef(null);
 
   // Auto-loop highlight rotation every 3.5 seconds
   useEffect(() => {
@@ -19,6 +20,18 @@ export default function TestimonialsSection() {
     };
   }, [isPaused]);
 
+  // Smooth scroll slider to active card on mobile when currentIndex changes
+  useEffect(() => {
+    if (sliderRef.current) {
+      const slider = sliderRef.current;
+      const card = slider.children[currentIndex];
+      if (card && slider.scrollWidth > slider.clientWidth) {
+        const scrollLeft = card.offsetLeft - (slider.clientWidth - card.clientWidth) / 2;
+        slider.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+      }
+    }
+  }, [currentIndex]);
+
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? TESTIMONIALS.length - 1 : prev - 1));
   };
@@ -28,11 +41,11 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section id="reviews" className="py-16 sm:py-20 bg-white border-b border-[#ECE7DC] overflow-hidden">
+    <section id="reviews" className="py-14 sm:py-20 bg-white border-b border-[#ECE7DC] overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Rating Overview Header */}
-        <div className="scroll-slide-up flex flex-col lg:flex-row items-center justify-between mb-10 gap-6 bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#E8E2D5] hover:shadow-md transition-shadow">
+        <div className="scroll-slide-up flex flex-col lg:flex-row items-center justify-between mb-8 sm:mb-10 gap-6 bg-[#FAF7F2] p-6 sm:p-8 rounded-3xl border border-[#E8E2D5] hover:shadow-md transition-shadow">
           <div className="text-center lg:text-left space-y-1">
             <span className="text-xs font-bold uppercase tracking-wider text-[#2D6A4F] bg-[#E8F5E9] px-3 py-1 rounded-full">
               4.8 ★ Verified Karachi Reviews
@@ -83,17 +96,17 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* 4 REVIEWS IN ONE SINGLE ROW CONTAINER WITH AUTO LOOP */}
+        {/* REVIEWS CONTAINER WITH RESPONSIVE MOBILE SLIDER + DESKTOP GRID */}
         <div
           className="relative w-full"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Header Controls for Loop */}
-          <div className="scroll-slide-up delay-75 flex items-center justify-between mb-4 px-1">
+          <div className="flex items-center justify-between mb-4 px-1">
             <div className="flex items-center gap-2 text-xs font-bold text-[#1B4332]">
               <span className="flex h-2.5 w-2.5 rounded-full bg-[#25D366] animate-pulse" />
-              <span>Live Reviews Loop (Review {currentIndex + 1} of {TESTIMONIALS.length})</span>
+              <span>Review {currentIndex + 1} of {TESTIMONIALS.length}</span>
               <span className="text-[11px] text-gray-400 font-normal">
                 {isPaused ? '(Paused on hover)' : '(Auto-looping active)'}
               </span>
@@ -104,33 +117,35 @@ export default function TestimonialsSection() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous review"
-                className="w-10 h-10 rounded-xl bg-white border border-[#D5CDC0] hover:bg-[#E8F5E9] hover:border-[#2D6A4F] text-[#1B4332] flex items-center justify-center shadow-xs hover:shadow-md transition-all active:scale-90"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white border border-[#D5CDC0] hover:bg-[#E8F5E9] hover:border-[#2D6A4F] text-[#1B4332] flex items-center justify-center shadow-xs hover:shadow-md transition-all active:scale-90"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button
                 onClick={handleNext}
                 aria-label="Next review"
-                className="w-10 h-10 rounded-xl bg-[#1B4332] hover:bg-[#2D6A4F] text-white flex items-center justify-center shadow-sm hover:shadow-md transition-all active:scale-90"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#1B4332] hover:bg-[#2D6A4F] text-white flex items-center justify-center shadow-sm hover:shadow-md transition-all active:scale-90"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
 
-          {/* ALL 4 REVIEWS STRICTLY IN 1 ROW ON LAPTOP/DESKTOP */}
-          <div className="grid-4-row">
+          {/* MOBILE SLIDER (Horizontal Snap) / DESKTOP GRID (4 in 1 Row) */}
+          <div
+            ref={sliderRef}
+            className="flex md:grid md:grid-cols-4 gap-3.5 sm:gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth pb-3 pt-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden w-full"
+          >
             {TESTIMONIALS.map((review, idx) => {
               const isActive = idx === currentIndex;
-              const delays = ['delay-75', 'delay-150', 'delay-200', 'delay-300'];
               return (
                 <div
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`scroll-slide-up ${delays[idx]} cursor-pointer rounded-3xl p-5 sm:p-6 border transition-all duration-400 ease-out flex flex-col justify-between h-full relative ${
+                  className={`shrink-0 w-[88%] xs:w-[82%] sm:w-[65%] md:w-auto snap-center cursor-pointer rounded-2xl sm:rounded-3xl p-5 sm:p-6 border transition-all duration-300 flex flex-col justify-between h-full relative ${
                     isActive
-                      ? 'bg-[#FAF7F2] border-[#2D6A4F] shadow-2xl ring-2 ring-[#2D6A4F]/30 -translate-y-2 scale-[1.02]'
-                      : 'bg-white border-[#EAE3D6] opacity-90 hover:opacity-100 hover:border-[#2D6A4F]/50 hover:shadow-xl hover:-translate-y-1'
+                      ? 'bg-[#FAF7F2] border-[#2D6A4F] shadow-xl ring-2 ring-[#2D6A4F]/30 md:-translate-y-1.5'
+                      : 'bg-white border-[#EAE3D6] opacity-90 hover:opacity-100 hover:border-[#2D6A4F]/40 hover:shadow-md'
                   }`}
                 >
                   <div className="space-y-3">
@@ -159,8 +174,8 @@ export default function TestimonialsSection() {
 
                   <div className="mt-5 pt-3.5 border-t border-[#EAE3D6] flex items-center justify-between">
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#165B3D] to-[#0E3524] text-[#FDE047] text-[11px] font-black flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-110 transition-transform">
-                        {review.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#165B3D] to-[#0E3524] text-[#FDE047] text-[11px] font-black flex items-center justify-center shrink-0 shadow-2xs">
+                        {review.name.split(' ').slice(0, 2).map((n) => n[0]).join('')}
                       </div>
                       <div className="min-w-0">
                         <div className="font-bold text-xs sm:text-sm text-[#0E3524] flex items-center gap-1 truncate">
@@ -181,8 +196,8 @@ export default function TestimonialsSection() {
             })}
           </div>
 
-          {/* Indicator Loop Dots with hover effects */}
-          <div className="flex items-center justify-center gap-2 mt-6">
+          {/* Indicator Loop Dots (Clickable to jump to any review) */}
+          <div className="flex items-center justify-center gap-2 mt-5">
             {TESTIMONIALS.map((_, idx) => (
               <button
                 key={idx}
@@ -196,6 +211,12 @@ export default function TestimonialsSection() {
               />
             ))}
           </div>
+
+          {/* Mobile swipe helper hint */}
+          <div className="text-center md:hidden mt-2 text-[11px] text-[#52796F] font-medium">
+            👈 Swipe horizontally or use arrows to read customer stories 👉
+          </div>
+
         </div>
 
       </div>
