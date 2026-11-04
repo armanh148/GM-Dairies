@@ -6,6 +6,11 @@
     --font-sans: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
   }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: #FAF8F5;
@@ -70,7 +75,7 @@
   }
 }
 
-@media (min-width: 860px) {
+@media (min-width: 768px) {
   .grid-4-row {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
@@ -84,56 +89,48 @@
 }
 
 /* ========================================================
-   SCROLLING ANIMATIONS (IntersectionObserver Classes)
+   ULTRA-SMOOTH SCROLLING ANIMATIONS (Apple Spring Physics)
    ======================================================== */
 .scroll-slide-up {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-slide-left {
   opacity: 0;
-  transform: translateX(-36px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-slide-right {
   opacity: 0;
-  transform: translateX(36px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-scale-up {
   opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.96);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .scroll-fade {
   opacity: 0;
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity;
 }
 
 /* Active State when element is in viewport */
-.scroll-slide-up.is-revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-slide-left.is-revealed {
-  opacity: 1;
-  transform: translateX(0);
-}
-
+.scroll-slide-up.is-revealed,
+.scroll-slide-left.is-revealed,
 .scroll-slide-right.is-revealed {
   opacity: 1;
-  transform: translateX(0);
+  transform: translate(0, 0);
 }
 
 .scroll-scale-up.is-revealed {
@@ -146,29 +143,30 @@
 }
 
 /* Stagger animation delays */
+.delay-50 { transition-delay: 50ms; }
 .delay-75 { transition-delay: 75ms; }
 .delay-100 { transition-delay: 100ms; }
 .delay-150 { transition-delay: 150ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-250 { transition-delay: 250ms; }
 .delay-300 { transition-delay: 300ms; }
-.delay-400 { transition-delay: 400ms; }
-.delay-500 { transition-delay: 500ms; }
 
 /* ========================================================
-   HOVER & MOTION EFFECTS
+   SMOOTH HOVER & MICRO-INTERACTIONS
    ======================================================== */
-.card-hover-motion {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+.smooth-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
   will-change: transform, box-shadow;
 }
 
-.card-hover-motion:hover {
+.smooth-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 40px -12px rgba(14, 53, 36, 0.15), 0 0 16px 1px rgba(45, 106, 79, 0.08);
+  box-shadow: 0 24px 44px -12px rgba(11, 43, 30, 0.14), 0 0 16px 1px rgba(45, 106, 79, 0.08);
 }
 
-/* Button Shimmer / Sheen Animation on hover */
+/* Silky Sheen on CTA Buttons */
 @keyframes shimmerPass {
   0% { transform: translateX(-150%) skewX(-20deg); }
   100% { transform: translateX(250%) skewX(-20deg); }
@@ -177,6 +175,7 @@
 .btn-shimmer {
   position: relative;
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-shimmer::before {
@@ -184,12 +183,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 45%;
   height: 100%;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.28),
     transparent
   );
   transform: translateX(-150%) skewX(-20deg);
@@ -197,16 +196,16 @@
 }
 
 .btn-shimmer:hover::before {
-  animation: shimmerPass 1.1s ease-in-out infinite;
+  animation: shimmerPass 1.2s ease-in-out infinite;
 }
 
-/* Floating Animations */
-@keyframes floatSlow {
+/* Floating Animations with Smooth Sine Curves */
+@keyframes floatSmooth {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-7px) rotate(0.6deg); }
 }
 
-@keyframes floatReverse {
+@keyframes floatSmoothReverse {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(7px) rotate(-0.6deg); }
 }
@@ -217,18 +216,18 @@
 }
 
 .animate-float {
-  animation: floatSlow 5s ease-in-out infinite;
+  animation: floatSmooth 6s ease-in-out infinite;
 }
 
 .animate-float-reverse {
-  animation: floatReverse 6s ease-in-out infinite;
+  animation: floatSmoothReverse 7s ease-in-out infinite;
 }
 
 .animate-glow {
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
-/* Infinite Marquee Ticker */
+/* Continuous Marquee Ticker */
 @keyframes marqueeScroll {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -237,25 +236,12 @@
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 32s linear infinite;
+  animation: marqueeScroll 36s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
-}
-
-/* Glassmorphism & Luxury Cards */
-.luxury-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(22, 91, 61, 0.09);
-  box-shadow: 0 4px 20px -2px rgba(14, 53, 36, 0.05);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.luxury-card:hover {
-  border-color: rgba(22, 91, 61, 0.28);
-  box-shadow: 0 20px 40px -10px rgba(14, 53, 36, 0.12);
-  transform: translateY(-4px);
 }
 
 /* Custom Scrollbar */
