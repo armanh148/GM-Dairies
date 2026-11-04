@@ -43,28 +43,28 @@ export default function PurityGuarantee() {
           </p>
         </div>
 
-        {/* Purity Cards Grid: Exactly 2 in a row (grid-cols-2) */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-6">
+        {/* Purity Cards Grid: Exactly 4 in one row (lg:grid-cols-4) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {points.map((pt, idx) => {
             const Icon = pt.icon;
             return (
               <div
                 key={idx}
-                className="bg-[#FAF7F2] p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/40 transition-all hover:shadow-lg flex flex-col justify-between"
+                className="bg-[#FAF7F2] p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/40 transition-all hover:shadow-lg flex flex-col justify-between h-full"
               >
                 <div>
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center mb-3 sm:mb-4">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] flex items-center justify-center mb-3 sm:mb-4">
                     <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <h3 className="font-serif font-bold text-sm sm:text-lg text-[#1B4332] mb-1.5 sm:mb-2 leading-snug">
+                  <h3 className="font-serif font-bold text-sm sm:text-base text-[#1B4332] mb-1.5 leading-snug">
                     {pt.title}
                   </h3>
-                  <p className="text-[11px] sm:text-xs md:text-sm text-[#52796F] leading-relaxed">
+                  <p className="text-xs text-[#52796F] leading-relaxed">
                     {pt.desc}
                   </p>
                 </div>
 
-                <div className="mt-4 sm:mt-5 pt-2.5 sm:pt-3 border-t border-[#E8E2D5]/80 flex items-center gap-1.5 text-[10px] sm:text-xs font-bold text-[#2D6A4F]">
+                <div className="mt-4 pt-3 border-t border-[#E8E2D5]/80 flex items-center gap-1.5 text-[11px] font-bold text-[#2D6A4F]">
                   <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                   <span className="truncate">Lab-Verified Check</span>
                 </div>
