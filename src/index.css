@@ -9,7 +9,7 @@
   body {
     font-family: var(--font-sans);
     background-color: #FAF8F5;
-    color: #172B20;
+    color: #11281E;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -20,20 +20,77 @@
   }
 }
 
+/* 5 Cards in 1 Row on Desktop & Laptop */
+.slider-5-col {
+  flex-shrink: 0;
+  width: 85%;
+  min-width: 85%;
+}
+
+@media (min-width: 520px) {
+  .slider-5-col {
+    width: calc((100% - 12px) / 2);
+    min-width: calc((100% - 12px) / 2);
+  }
+}
+
+@media (min-width: 768px) {
+  .slider-5-col {
+    width: calc((100% - 2 * 12px) / 3);
+    min-width: calc((100% - 2 * 12px) / 3);
+  }
+}
+
+@media (min-width: 960px) {
+  .slider-5-col {
+    width: calc((100% - 3 * 14px) / 4);
+    min-width: calc((100% - 3 * 14px) / 4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .slider-5-col {
+    width: calc((100% - 4 * 14px) / 5) !important;
+    min-width: calc((100% - 4 * 14px) / 5) !important;
+    max-width: calc((100% - 4 * 14px) / 5) !important;
+  }
+}
+
+/* Strictly 4 Cards in 1 Row on Tablet Landscape, Laptop and Desktop */
+.grid-4-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 600px) {
+  .grid-4-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 860px) {
+  .grid-4-row {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Strictly 3 in 1 Row for Frequency Buttons */
+.grid-3-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 0.625rem;
+}
+
 /* Luxury animations */
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-7px) rotate(0.6deg); }
+  50% { transform: translateY(-6px) rotate(0.5deg); }
 }
 
 @keyframes pulseGlow {
   0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  50% { opacity: 1; transform: scale(1.04); }
 }
 
 .animate-float {
@@ -47,13 +104,13 @@
 /* Glassmorphism & Luxury Cards */
 .luxury-card {
   background: #FFFFFF;
-  border: 1px solid rgba(22, 91, 61, 0.08);
+  border: 1px solid rgba(22, 91, 61, 0.09);
   box-shadow: 0 4px 20px -2px rgba(14, 53, 36, 0.05);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .luxury-card:hover {
-  border-color: rgba(22, 91, 61, 0.22);
+  border-color: rgba(22, 91, 61, 0.28);
   box-shadow: 0 20px 40px -10px rgba(14, 53, 36, 0.12);
   transform: translateY(-4px);
 }

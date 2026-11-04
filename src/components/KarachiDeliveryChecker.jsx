@@ -81,7 +81,7 @@ export default function KarachiDeliveryChecker() {
             {filteredAreas.map((area, idx) => (
               <div
                 key={idx}
-                className="snap-start shrink-0 w-[85%] sm:w-[calc(50%-8px)] md:w-[calc(33.333%-10px)] lg:w-[calc(25%-11px)] xl:w-[calc(20%-11.5px)] bg-white p-5 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between"
+                className="slider-5-col snap-start bg-white p-5 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
                   {/* Area Title & Status */}

@@ -28,7 +28,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section id="reviews" className="py-16 bg-white border-b border-[#ECE7DC] overflow-hidden">
+    <section id="reviews" className="py-16 sm:py-20 bg-white border-b border-[#ECE7DC] overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Rating Overview Header */}
@@ -83,7 +83,7 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* 4 REVIEWS IN ONE SINGLE ROW CONTAINER */}
+        {/* 4 REVIEWS IN ONE SINGLE ROW CONTAINER WITH AUTO LOOP */}
         <div
           className="relative w-full"
           onMouseEnter={() => setIsPaused(true)}
@@ -118,17 +118,17 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* ALL 4 REVIEWS IN 1 ROW (lg:grid-cols-4) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full">
+          {/* ALL 4 REVIEWS STRICTLY IN 1 ROW ON LAPTOP/DESKTOP */}
+          <div className="grid-4-row">
             {TESTIMONIALS.map((review, idx) => {
               const isActive = idx === currentIndex;
               return (
                 <div
                   key={idx}
                   onClick={() => setCurrentIndex(idx)}
-                  className={`cursor-pointer rounded-3xl p-5 sm:p-6 border transition-all duration-300 flex flex-col justify-between h-full ${
+                  className={`cursor-pointer rounded-3xl p-5 sm:p-6 border transition-all duration-300 flex flex-col justify-between h-full relative ${
                     isActive
-                      ? 'bg-[#FAF7F2] border-[#2D6A4F] shadow-xl ring-2 ring-[#2D6A4F]/25 scale-[1.02]'
+                      ? 'bg-[#FAF7F2] border-[#2D6A4F] shadow-xl ring-2 ring-[#2D6A4F]/30 scale-[1.02]'
                       : 'bg-white border-[#EAE3D6] opacity-90 hover:opacity-100 hover:border-gray-400 hover:shadow-md'
                   }`}
                 >
@@ -151,7 +151,7 @@ export default function TestimonialsSection() {
                     <div className="relative pt-1">
                       <Quote className="w-6 h-6 text-[#2D6A4F]/20 absolute -top-2 -left-1 pointer-events-none" />
                       <p className="text-xs sm:text-sm text-[#2D3A30] leading-relaxed italic relative z-10 pl-2">
-                        {review.text}
+                        "{review.text}"
                       </p>
                     </div>
                   </div>

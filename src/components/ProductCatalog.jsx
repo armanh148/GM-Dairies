@@ -228,7 +228,7 @@ export default function ProductCatalog({ onAddToCart, onOpenSubscription }) {
               {filteredProducts.map((product) => (
                 <div
                   key={product.id}
-                  className="snap-start shrink-0 w-[80%] sm:w-[calc(50%-8px)] md:w-[calc(33.333%-10px)] lg:w-[calc(25%-11px)] xl:w-[calc(20%-11.5px)] h-auto flex flex-col"
+                  className="slider-5-col snap-start h-auto flex flex-col"
                 >
                   <ProductCard
                     product={product}

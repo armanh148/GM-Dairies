@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Droplet, ThermometerSnowflake, Heart, CheckCircle2, Award, Sparkles } from 'lucide-react';
+import { ShieldCheck, Droplet, ThermometerSnowflake, Award, CheckCircle2, Sparkles } from 'lucide-react';
 
 export default function PurityGuarantee() {
   const points = [
@@ -30,12 +30,12 @@ export default function PurityGuarantee() {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
           <div className="inline-flex items-center gap-2 bg-[#E8F5E9] text-[#0E3524] px-4 py-1.5 rounded-full text-xs font-bold mb-3 shadow-2xs">
             <ShieldCheck className="w-4 h-4 text-[#2D6A4F]" />
             <span>The GM Purity Standard</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#0E3524]">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-[#0E3524] tracking-tight">
             Why Karachi Families Trust GM Dairies
           </h2>
           <p className="mt-3 text-sm sm:text-base text-[#52796F]">
@@ -43,23 +43,23 @@ export default function PurityGuarantee() {
           </p>
         </div>
 
-        {/* 4 Cards in 1 Row (lg:grid-cols-4) with modern bento aesthetic */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* 4 Cards strictly in 1 Row on laptop/desktop using .grid-4-row */}
+        <div className="grid-4-row">
           {points.map((pt, idx) => {
             const Icon = pt.icon;
             return (
               <div
                 key={idx}
-                className="group bg-gradient-to-b from-[#FAF8F5] to-white p-6 sm:p-7 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between h-full relative"
+                className="group bg-gradient-to-b from-[#FAF8F5] to-white p-5 sm:p-6 rounded-3xl border border-[#E8E2D5] hover:border-[#2D6A4F]/50 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between h-full relative"
               >
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#E8F5E9] text-[#2D6A4F] group-hover:bg-[#1B4332] group-hover:text-white transition-colors flex items-center justify-center mb-4 shadow-xs">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-serif font-bold text-base text-[#0E3524] mb-2 leading-snug">
+                  <h3 className="font-serif font-bold text-base sm:text-lg text-[#0E3524] mb-2 leading-snug">
                     {pt.title}
                   </h3>
-                  <p className="text-xs text-[#52796F] leading-relaxed">
+                  <p className="text-xs sm:text-[13px] text-[#52796F] leading-relaxed">
                     {pt.desc}
                   </p>
                 </div>

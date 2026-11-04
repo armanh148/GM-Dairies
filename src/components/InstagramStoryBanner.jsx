@@ -1,10 +1,10 @@
 import React from 'react';
 import { INSTAGRAM_COMMENTS } from '../data/karachiAreas';
-import { Heart, MessageCircle, ExternalLink, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { Heart, MessageCircle, ExternalLink, CheckCircle, Sparkles } from 'lucide-react';
 
 export default function InstagramStoryBanner({ onOpenSubscription }) {
   return (
-    <section className="py-14 bg-white border-y border-[#ECE7DC] relative overflow-hidden">
+    <section className="py-16 bg-white border-y border-[#ECE7DC] relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-8">
         
         {/* Section Header */}
@@ -18,7 +18,7 @@ export default function InstagramStoryBanner({ onOpenSubscription }) {
               You Asked: <span className="italic text-[#E1306C]">"Online Available?"</span> We Delivered!
             </h2>
             <p className="text-xs sm:text-sm text-[#52796F] max-w-2xl mt-1.5">
-              Thousands asked in our Instagram comments. We launched full doorstep delivery from Gulshan across Karachi with insulated morning drops.
+              Hundreds of daily comments on Instagram asking for home delivery. We built our morning doorstep distribution network across Karachi so you never run out of pure milk.
             </p>
           </div>
 
@@ -42,8 +42,8 @@ export default function InstagramStoryBanner({ onOpenSubscription }) {
           </div>
         </div>
 
-        {/* 4 Cards in 1 Row (lg:grid-cols-4) with modern social card styling */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* 4 Cards strictly in 1 Row on laptop/desktop using .grid-4-row */}
+        <div className="grid-4-row">
           {INSTAGRAM_COMMENTS.map((item, idx) => (
             <div
               key={idx}
@@ -78,7 +78,7 @@ export default function InstagramStoryBanner({ onOpenSubscription }) {
                 </div>
 
                 {/* GM Dairies Official Verified Reply */}
-                <div className="pl-3 border-l-2 border-[#2D6A4F] space-y-1 bg-[#E8F5E9]/30 p-2 rounded-r-xl">
+                <div className="pl-3 border-l-2 border-[#2D6A4F] space-y-1 bg-[#E8F5E9]/30 p-2.5 rounded-r-xl">
                   <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#0E3524]">
                     <span>GM Dairies</span>
                     <CheckCircle className="w-3.5 h-3.5 text-[#2D6A4F] fill-[#D8F3DC]" />

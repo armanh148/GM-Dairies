@@ -170,7 +170,7 @@ export default function SubscriptionPlanner() {
               <label className="block text-xs font-extrabold uppercase tracking-wider text-[#0E3524] mb-2.5">
                 Step 3: Delivery Frequency
               </label>
-              <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              <div className="grid-3-row">
                 {[
                   { id: 'daily', label: 'Everyday', sub: '7 Days a Week' },
                   { id: 'alternate', label: 'Alternate Days', sub: '15 Days / Mo' },
