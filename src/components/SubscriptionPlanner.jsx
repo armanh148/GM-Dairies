@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, Check, Sparkles, MessageCircle, ShieldCheck, HeartHandshake, PhoneCall, ChevronRight, ChevronDown } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Calendar, Clock, Check, Sparkles, MessageCircle, ShieldCheck, HeartHandshake, PhoneCall, ChevronRight, ChevronDown, MapPin } from 'lucide-react';
 import { KARACHI_AREAS } from '../data/karachiAreas';
+
+const TIME_SLOTS = [
+  { value: '5:30 AM – 6:30 AM', label: 'Early Morning (5:30 AM – 6:30 AM)' },
+  { value: '6:30 AM – 7:30 AM', label: 'Standard Breakfast (6:30 AM – 7:30 AM)' },
+  { value: '7:30 AM – 8:30 AM', label: 'Morning Rush (7:30 AM – 8:30 AM)' },
+];
 
 export default function SubscriptionPlanner() {
   const [milkType, setMilkType] = useState('buffalo'); // 'buffalo' | 'cow'
@@ -8,9 +14,28 @@ export default function SubscriptionPlanner() {
   const [frequency, setFrequency] = useState('daily'); // 'daily' | 'alternate' | 'weekdays'
   const [timeSlot, setTimeSlot] = useState('6:30 AM – 7:30 AM');
   const [area, setArea] = useState('Gulshan-e-Iqbal (Block 1 - 20)');
+  const [isSlotOpen, setIsSlotOpen] = useState(false);
+  const [isAreaOpen, setIsAreaOpen] = useState(false);
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [houseAddress, setHouseAddress] = useState('');
+
+  const slotDropdownRef = useRef(null);
+  const areaDropdownRef = useRef(null);
+
+  // Click outside to close dropdowns
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (slotDropdownRef.current && !slotDropdownRef.current.contains(e.target)) {
+        setIsSlotOpen(false);
+      }
+      if (areaDropdownRef.current && !areaDropdownRef.current.contains(e.target)) {
+        setIsAreaOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Calculations
   const pricePerLiter = milkType === 'buffalo' ? 270 : 280;
@@ -193,45 +218,127 @@ export default function SubscriptionPlanner() {
               </div>
             </div>
 
-            {/* Step 4: Time Slot & Area */}
+            {/* Step 4: Time Slot & Area - Luxury Custom Dropdowns */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
+              
+              {/* Custom Morning Delivery Slot Dropdown */}
+              <div className="relative" ref={slotDropdownRef}>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#0E3524] mb-1.5">
                   Morning Delivery Slot
                 </label>
-                <div className="relative">
-                  <select
-                    value={timeSlot}
-                    onChange={(e) => setTimeSlot(e.target.value)}
-                    className="w-full bg-[#FAF8F5] border border-[#D5CDC0] rounded-xl pl-3.5 pr-9 py-2.5 text-xs font-semibold text-[#0E3524] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2D6A4F] hover:bg-white transition-colors"
-                  >
-                    <option value="5:30 AM – 6:30 AM">Early Morning (5:30 AM – 6:30 AM)</option>
-                    <option value="6:30 AM – 7:30 AM">Standard Breakfast (6:30 AM – 7:30 AM)</option>
-                    <option value="7:30 AM – 8:30 AM">Morning Rush (7:30 AM – 8:30 AM)</option>
-                  </select>
-                  <ChevronDown className="w-4 h-4 text-[#2D6A4F] absolute right-3 top-3 pointer-events-none" />
-                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsSlotOpen((prev) => !prev);
+                    setIsAreaOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between bg-[#FAF8F5] border rounded-2xl px-3.5 py-3 text-xs font-semibold text-[#0E3524] transition-all ${
+                    isSlotOpen
+                      ? 'border-[#2D6A4F] bg-white ring-2 ring-[#2D6A4F]/20 shadow-xs'
+                      : 'border-[#D5CDC0] hover:bg-white hover:border-[#2D6A4F]/50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 truncate">
+                    <Clock className="w-3.5 h-3.5 text-[#2D6A4F] shrink-0" />
+                    <span className="truncate">{timeSlot}</span>
+                  </div>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#2D6A4F] transition-transform duration-200 shrink-0 ml-2 ${
+                      isSlotOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Custom Popover Menu */}
+                {isSlotOpen && (
+                  <div className="absolute left-0 right-0 top-full mt-1.5 bg-white/98 backdrop-blur-md rounded-2xl border border-[#D5CDC0] shadow-2xl p-1.5 z-50 animate-in fade-in zoom-in-95 duration-150">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-gray-400 px-2.5 py-1.5">
+                      Select Morning Slot
+                    </div>
+                    {TIME_SLOTS.map((slot) => {
+                      const isSelected = timeSlot === slot.value;
+                      return (
+                        <button
+                          key={slot.value}
+                          type="button"
+                          onClick={() => {
+                            setTimeSlot(slot.value);
+                            setIsSlotOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-left transition-colors ${
+                            isSelected
+                              ? 'bg-[#1B4332] text-white font-bold shadow-xs'
+                              : 'text-[#0E3524] hover:bg-[#E8F5E9]'
+                          }`}
+                        >
+                          <span>{slot.label}</span>
+                          {isSelected && <Check className="w-4 h-4 text-[#FDE047] shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
-              <div>
+              {/* Custom Karachi Delivery Area Dropdown (No native OS select) */}
+              <div className="relative" ref={areaDropdownRef}>
                 <label className="block text-xs font-bold uppercase tracking-wider text-[#0E3524] mb-1.5">
                   Karachi Delivery Area
                 </label>
-                <div className="relative">
-                  <select
-                    value={area}
-                    onChange={(e) => setArea(e.target.value)}
-                    className="w-full bg-[#FAF8F5] border border-[#D5CDC0] rounded-xl pl-3.5 pr-9 py-2.5 text-xs font-semibold text-[#0E3524] appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2D6A4F] hover:bg-white transition-colors"
-                  >
-                    {KARACHI_AREAS.map((kArea, idx) => (
-                      <option key={idx} value={kArea.name}>
-                        {kArea.name}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="w-4 h-4 text-[#2D6A4F] absolute right-3 top-3 pointer-events-none" />
-                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsAreaOpen((prev) => !prev);
+                    setIsSlotOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between bg-[#FAF8F5] border rounded-2xl px-3.5 py-3 text-xs font-semibold text-[#0E3524] transition-all ${
+                    isAreaOpen
+                      ? 'border-[#2D6A4F] bg-white ring-2 ring-[#2D6A4F]/20 shadow-xs'
+                      : 'border-[#D5CDC0] hover:bg-white hover:border-[#2D6A4F]/50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 truncate">
+                    <MapPin className="w-3.5 h-3.5 text-[#2D6A4F] shrink-0" />
+                    <span className="truncate">{area}</span>
+                  </div>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#2D6A4F] transition-transform duration-200 shrink-0 ml-2 ${
+                      isAreaOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Custom Popover Menu with Scrollbar */}
+                {isAreaOpen && (
+                  <div className="absolute left-0 right-0 top-full mt-1.5 bg-white/98 backdrop-blur-md rounded-2xl border border-[#D5CDC0] shadow-2xl p-1.5 z-50 max-h-64 overflow-y-auto animate-in fade-in zoom-in-95 duration-150">
+                    <div className="text-[10px] font-extrabold uppercase tracking-wider text-gray-400 px-2.5 py-1.5 sticky top-0 bg-white/95 backdrop-blur-xs z-10 border-b border-gray-100 mb-1">
+                      Available Karachi Zones (From Moti Mahal Depot)
+                    </div>
+                    {KARACHI_AREAS.map((kArea, idx) => {
+                      const isSelected = area === kArea.name;
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => {
+                            setArea(kArea.name);
+                            setIsAreaOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold text-left transition-colors ${
+                            isSelected
+                              ? 'bg-[#1B4332] text-white font-bold shadow-xs'
+                              : 'text-[#0E3524] hover:bg-[#E8F5E9]'
+                          }`}
+                        >
+                          <span className="truncate">{kArea.name}</span>
+                          {isSelected && <Check className="w-4 h-4 text-[#FDE047] shrink-0 ml-2" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
+
             </div>
 
             {/* Address inputs */}
